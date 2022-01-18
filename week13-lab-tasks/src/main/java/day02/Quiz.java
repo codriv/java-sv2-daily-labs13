@@ -19,7 +19,7 @@ public class Quiz {
         fillPlayers();
     }
 
-    public List<String> readFile() {
+    public List<String> getFileContent() {
         List<String> fileContent = null;
         try {
             fileContent = Files.readAllLines(path);
@@ -30,16 +30,29 @@ public class Quiz {
         return fileContent;
     }
 
+//    public void fillPlayers() {
+//        List <String> fileContent = readFile();
+//        for (int i = 1; i < fileContent.size(); i++) {
+//            String parts[] = fileContent.get(i).split(" ");
+//            String code = parts[0];
+//            String answer = parts[1];
+//            if (findPlayerByCode(code) == null) {
+//                players.add(new Player(code));
+//            }
+//            findPlayerByCode(code).getAnswers().add(answer);
+//        }
+//        setPoints();
+//    }
+
     public void fillPlayers() {
-        List <String> fileContent = readFile();
-        for (int i = 1; i < fileContent.size(); i++) {
-            String parts[] = fileContent.get(i).split(" ");
-            String code = parts[0];
-            String answer = parts[1];
-            if (findPlayerByCode(code) == null) {
-                players.add(new Player(code));
+        List <String> allOfAnswers = getFileContent();
+        allOfAnswers.remove(0);
+        for (String line: allOfAnswers) {
+            String parts[] = line.split(" ");
+            if (findPlayerByCode(parts[0]) == null) {
+                players.add(new Player(parts[0]));
             }
-            findPlayerByCode(code).getAnswers().add(answer);
+            findPlayerByCode(parts[0]).getAnswers().add(parts[1]);
         }
         setPoints();
     }
