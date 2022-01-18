@@ -6,6 +6,10 @@ public class ClassNoteBook {
 
     private Map<Student, Set<Integer>> students = new TreeMap<>();
 
+    public Map<Student, Set<Integer>> getStudents() {
+        return students;
+    }
+
     public void addStudent(Student student) {
         students.put(student, new HashSet<>());
     }
