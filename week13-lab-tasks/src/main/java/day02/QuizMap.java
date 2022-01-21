@@ -8,7 +8,7 @@ import java.util.*;
 public class QuizMap {
 
     private Path path;
-    private Map<String, List<String>> players = new HashMap<>();
+    private Map<String, List<String>> players = new TreeMap<>();
     private List<String> solutions;
 
     public QuizMap(String path) {
